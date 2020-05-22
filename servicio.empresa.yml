@@ -1,15 +1,12 @@
-#HTTP Server
-server:
-  port: 3334
-
-#Discovery Server Access
+# Discovery Server Access
 eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     service-url:
-      default-zone: http://localhost:8761/eureka
-  instance:
-    status-page-url-path: /infoCatalogo
-    health-check-url-path: /healthCatalogo
-    metadata-map:
-       app-owner: dcamurqu
-       description: test application for the expert course
+      defaultZone: http://localhost:8761/eureka
+  
+
+# HTTP Server
+server:
+  port: ${PORT:0}   # HTTP (Tomcat) port
